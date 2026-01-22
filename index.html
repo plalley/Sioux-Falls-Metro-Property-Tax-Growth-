@@ -37,10 +37,11 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/Lincoln_OO_minus25toplus150_1.js"></script>
-        <script src="data/Minnehaha_OO_minus25toplus150_2.js"></script>
-        <script src="data/SiouxFalls_OO_minus25toplus150_3.js"></script>
-        <script src="data/Simplified_4.js"></script>
+        <script src="data/School_Districts_0.js"></script>
+        <script src="data/SimplifiedLincoln_2.js"></script>
+        <script src="data/SimplifiedSiouxFalls_3.js"></script>
+        <script src="data/SimplifiedMinnehaha_4.js"></script>
+        <script src="data/SimplifiedCountymap_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -128,10 +129,65 @@
                 map.fitBounds(bounds_group.getBounds());
             }
         }
-        map.createPane('pane_OpenStreetMap_0');
-        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
-        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            pane: 'pane_OpenStreetMap_0',
+        function pop_School_Districts_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(String(feature.properties['OBJECTID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICTNA'] !== null ? autolinker.link(String(feature.properties['DISTRICTNA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(String(feature.properties['DISTRICT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SCHOOLAREA'] !== null ? autolinker.link(String(feature.properties['SCHOOLAREA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPESTAre'] !== null ? autolinker.link(String(feature.properties['SHAPESTAre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPESTLen'] !== null ? autolinker.link(String(feature.properties['SHAPESTLen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_School_Districts_0_0() {
+            return {
+                pane: 'pane_School_Districts_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_School_Districts_0');
+        map.getPane('pane_School_Districts_0').style.zIndex = 400;
+        map.getPane('pane_School_Districts_0').style['mix-blend-mode'] = 'normal';
+        var layer_School_Districts_0 = new L.geoJson(json_School_Districts_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_School_Districts_0',
+            layerName: 'layer_School_Districts_0',
+            pane: 'pane_School_Districts_0',
+            onEachFeature: pop_School_Districts_0,
+            style: style_School_Districts_0_0,
+        });
+        bounds_group.addLayer(layer_School_Districts_0);
+        map.addLayer(layer_School_Districts_0);
+        map.createPane('pane_OpenStreetMap_1');
+        map.getPane('pane_OpenStreetMap_1').style.zIndex = 401;
+        var layer_OpenStreetMap_1 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_1',
             opacity: 0.346,
             attribution: '',
             minZoom: 1,
@@ -139,9 +195,9 @@
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
-        layer_OpenStreetMap_0;
-        map.addLayer(layer_OpenStreetMap_0);
-        function pop_Lincoln_OO_minus25toplus150_1(feature, layer) {
+        layer_OpenStreetMap_1;
+        map.addLayer(layer_OpenStreetMap_1);
+        function pop_SimplifiedLincoln_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['PID'] !== null ? autolinker.link(String(feature.properties['PID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -238,11 +294,25 @@
                         <td colspan="2">' + (feature.properties['Tag'] !== null ? autolinker.link(String(feature.properties['Tag']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['LowYear'] !== null ? autolinker.link(String(feature.properties['LowYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HighYear'] !== null ? autolinker.link(String(feature.properties['HighYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed20'] !== null ? autolinker.link(String(feature.properties['Assessed20']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2020</th>\
-                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Levy2020'] !== null ? autolinker.link(String(feature.properties['Levy2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2020'] !== null ? autolinker.link(String(feature.properties['Misc2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -254,8 +324,7 @@
                         <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2021</th>\
-                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -270,8 +339,7 @@
                         <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2022</th>\
-                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -286,8 +354,7 @@
                         <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2023</th>\
-                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -302,11 +369,11 @@
                         <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2024</th>\
-                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Misc2024</th>\
+                        <td>' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Grwth_20_2</th>\
@@ -335,11 +402,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Lincoln_OO_minus25toplus150_1_0(feature) {
+        function style_SimplifiedLincoln_2_0(feature) {
             switch(String(feature.properties['Code'])) {
                 case '1':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -349,7 +416,7 @@
                     break;
                 case '2':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -359,7 +426,7 @@
                     break;
                 case '3':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -369,7 +436,7 @@
                     break;
                 case '4':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -379,7 +446,7 @@
                     break;
                 case '5':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -389,7 +456,7 @@
                     break;
                 case '6':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -399,7 +466,7 @@
                     break;
                 case '7':
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -409,7 +476,7 @@
                     break;
                 default:
                     return {
-                pane: 'pane_Lincoln_OO_minus25toplus150_1',
+                pane: 'pane_SimplifiedLincoln_2',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -419,25 +486,379 @@
                     break;
             }
         }
-        map.createPane('pane_Lincoln_OO_minus25toplus150_1');
-        map.getPane('pane_Lincoln_OO_minus25toplus150_1').style.zIndex = 401;
-        map.getPane('pane_Lincoln_OO_minus25toplus150_1').style['mix-blend-mode'] = 'normal';
-        var layer_Lincoln_OO_minus25toplus150_1 = new L.geoJson(json_Lincoln_OO_minus25toplus150_1, {
+        map.createPane('pane_SimplifiedLincoln_2');
+        map.getPane('pane_SimplifiedLincoln_2').style.zIndex = 402;
+        map.getPane('pane_SimplifiedLincoln_2').style['mix-blend-mode'] = 'normal';
+        var layer_SimplifiedLincoln_2 = new L.geoJson(json_SimplifiedLincoln_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Lincoln_OO_minus25toplus150_1',
-            layerName: 'layer_Lincoln_OO_minus25toplus150_1',
-            pane: 'pane_Lincoln_OO_minus25toplus150_1',
-            onEachFeature: pop_Lincoln_OO_minus25toplus150_1,
-            style: style_Lincoln_OO_minus25toplus150_1_0,
+            dataVar: 'json_SimplifiedLincoln_2',
+            layerName: 'layer_SimplifiedLincoln_2',
+            pane: 'pane_SimplifiedLincoln_2',
+            onEachFeature: pop_SimplifiedLincoln_2,
+            style: style_SimplifiedLincoln_2_0,
         });
-        bounds_group.addLayer(layer_Lincoln_OO_minus25toplus150_1);
-        map.addLayer(layer_Lincoln_OO_minus25toplus150_1);
-        function pop_Minnehaha_OO_minus25toplus150_2(feature, layer) {
+        bounds_group.addLayer(layer_SimplifiedLincoln_2);
+        map.addLayer(layer_SimplifiedLincoln_2);
+        function pop_SimplifiedSiouxFalls_3(feature, layer) {
             var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID_1'] !== null ? autolinker.link(String(feature.properties['OBJECTID_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TAG'] !== null ? autolinker.link(String(feature.properties['TAG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ADDRESS</th>\
+                        <td>' + (feature.properties['ADDRESS'] !== null ? autolinker.link(String(feature.properties['ADDRESS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADDITION'] !== null ? autolinker.link(String(feature.properties['ADDITION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACREAGE'] !== null ? autolinker.link(String(feature.properties['ACREAGE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SQFT'] !== null ? autolinker.link(String(feature.properties['SQFT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACTIVITY'] !== null ? autolinker.link(String(feature.properties['ACTIVITY']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNNAME1'] !== null ? autolinker.link(String(feature.properties['OWNNAME1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNNAME2'] !== null ? autolinker.link(String(feature.properties['OWNNAME2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNADDRESS'] !== null ? autolinker.link(String(feature.properties['OWNADDRESS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNCITY'] !== null ? autolinker.link(String(feature.properties['OWNCITY']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNSTATE'] !== null ? autolinker.link(String(feature.properties['OWNSTATE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNZIP'] !== null ? autolinker.link(String(feature.properties['OWNZIP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNZIP2'] !== null ? autolinker.link(String(feature.properties['OWNZIP2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEGAL'] !== null ? autolinker.link(String(feature.properties['LEGAL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FRONTFOOT'] !== null ? autolinker.link(String(feature.properties['FRONTFOOT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARHOUSE'] !== null ? autolinker.link(String(feature.properties['PARHOUSE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARHALF'] !== null ? autolinker.link(String(feature.properties['PARHALF']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARPR'] !== null ? autolinker.link(String(feature.properties['PARPR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARSTREET'] !== null ? autolinker.link(String(feature.properties['PARSTREET']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARTYPE'] !== null ? autolinker.link(String(feature.properties['PARTYPE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARPD'] !== null ? autolinker.link(String(feature.properties['PARPD']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTY'] !== null ? autolinker.link(String(feature.properties['COUNTY']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYID'] !== null ? autolinker.link(String(feature.properties['COUNTYID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADDITIONNU'] !== null ? autolinker.link(String(feature.properties['ADDITIONNU']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['UNITNUM'] !== null ? autolinker.link(String(feature.properties['UNITNUM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LANDUSE'] !== null ? autolinker.link(String(feature.properties['LANDUSE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NUMUNITS'] !== null ? autolinker.link(String(feature.properties['NUMUNITS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LegalStart'] !== null ? autolinker.link(String(feature.properties['LegalStart']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADDITIONPR'] !== null ? autolinker.link(String(feature.properties['ADDITIONPR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARCEL_LOT'] !== null ? autolinker.link(String(feature.properties['PARCEL_LOT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARCEL_TRA'] !== null ? autolinker.link(String(feature.properties['PARCEL_TRA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BlockDesig'] !== null ? autolinker.link(String(feature.properties['BlockDesig']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FORM_PRIMA'] !== null ? autolinker.link(String(feature.properties['FORM_PRIMA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FORM_ACCES'] !== null ? autolinker.link(String(feature.properties['FORM_ACCES']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FORM_SIGNE'] !== null ? autolinker.link(String(feature.properties['FORM_SIGNE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FORM_DATE'] !== null ? autolinker.link(String(feature.properties['FORM_DATE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FORM_COMME'] !== null ? autolinker.link(String(feature.properties['FORM_COMME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DEPARTMENT'] !== null ? autolinker.link(String(feature.properties['DEPARTMENT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARCELTYPE'] !== null ? autolinker.link(String(feature.properties['PARCELTYPE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ZIPCODE'] !== null ? autolinker.link(String(feature.properties['ZIPCODE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OWNEROCCST'] !== null ? autolinker.link(String(feature.properties['OWNEROCCST']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ShapeSTAre'] !== null ? autolinker.link(String(feature.properties['ShapeSTAre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ShapeSTLen'] !== null ? autolinker.link(String(feature.properties['ShapeSTLen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CountyID_1'] !== null ? autolinker.link(String(feature.properties['CountyID_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tag_1'] !== null ? autolinker.link(String(feature.properties['Tag_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LowYear'] !== null ? autolinker.link(String(feature.properties['LowYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HighYear'] !== null ? autolinker.link(String(feature.properties['HighYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed20'] !== null ? autolinker.link(String(feature.properties['Assessed20']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Levy2020'] !== null ? autolinker.link(String(feature.properties['Levy2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2020'] !== null ? autolinker.link(String(feature.properties['Misc2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Taxable2_1'] !== null ? autolinker.link(String(feature.properties['Taxable2_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed_2'] !== null ? autolinker.link(String(feature.properties['Assessed_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Taxable2_2'] !== null ? autolinker.link(String(feature.properties['Taxable2_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed_3'] !== null ? autolinker.link(String(feature.properties['Assessed_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Taxable2_3'] !== null ? autolinker.link(String(feature.properties['Taxable2_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed_4'] !== null ? autolinker.link(String(feature.properties['Assessed_4']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Taxable2_4'] !== null ? autolinker.link(String(feature.properties['Taxable2_4']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tax2024</th>\
+                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Grwth_20_2</th>\
+                        <td>' + (feature.properties['Grwth_20_2'] !== null ? autolinker.link(String(feature.properties['Grwth_20_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['F31'] !== null ? autolinker.link(String(feature.properties['F31']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ObjectID_2'] !== null ? autolinker.link(String(feature.properties['ObjectID_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(String(feature.properties['Shape_Leng']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Code'] !== null ? autolinker.link(String(feature.properties['Code']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_SimplifiedSiouxFalls_3_0(feature) {
+            switch(String(feature.properties['Code'])) {
+                case '1':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,128,128,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,190,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,255,190,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '4':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,205,102,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,169,230,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '6':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,38,115,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '7':
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_SimplifiedSiouxFalls_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,239,239,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_SimplifiedSiouxFalls_3');
+        map.getPane('pane_SimplifiedSiouxFalls_3').style.zIndex = 403;
+        map.getPane('pane_SimplifiedSiouxFalls_3').style['mix-blend-mode'] = 'normal';
+        var layer_SimplifiedSiouxFalls_3 = new L.geoJson(json_SimplifiedSiouxFalls_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SimplifiedSiouxFalls_3',
+            layerName: 'layer_SimplifiedSiouxFalls_3',
+            pane: 'pane_SimplifiedSiouxFalls_3',
+            onEachFeature: pop_SimplifiedSiouxFalls_3,
+            style: style_SimplifiedSiouxFalls_3_0,
+        });
+        bounds_group.addLayer(layer_SimplifiedSiouxFalls_3);
+        map.addLayer(layer_SimplifiedSiouxFalls_3);
+        function pop_SimplifiedMinnehaha_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID_1'] !== null ? autolinker.link(String(feature.properties['OBJECTID_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                     <tr>\
                         <th scope="row">FULL_ADDRE</th>\
                         <td>' + (feature.properties['FULL_ADDRE'] !== null ? autolinker.link(String(feature.properties['FULL_ADDRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TAG'] !== null ? autolinker.link(String(feature.properties['TAG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['MAP_ID'] !== null ? autolinker.link(String(feature.properties['MAP_ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -491,6 +912,9 @@
                         <td colspan="2">' + (feature.properties['SUBDIVISIO'] !== null ? autolinker.link(String(feature.properties['SUBDIVISIO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['ADDITION'] !== null ? autolinker.link(String(feature.properties['ADDITION']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['LEGAL_DESC'] !== null ? autolinker.link(String(feature.properties['LEGAL_DESC']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -506,6 +930,12 @@
                         <td colspan="2">' + (feature.properties['TOTAL_ACRE'] !== null ? autolinker.link(String(feature.properties['TOTAL_ACRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['SQFT'] !== null ? autolinker.link(String(feature.properties['SQFT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FRONTFOOT'] !== null ? autolinker.link(String(feature.properties['FRONTFOOT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['MRTADR'] !== null ? autolinker.link(String(feature.properties['MRTADR']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -515,11 +945,25 @@
                         <td colspan="2">' + (feature.properties['Tag_1'] !== null ? autolinker.link(String(feature.properties['Tag_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['LowYear'] !== null ? autolinker.link(String(feature.properties['LowYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HighYear'] !== null ? autolinker.link(String(feature.properties['HighYear']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Assessed20'] !== null ? autolinker.link(String(feature.properties['Assessed20']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2020</th>\
-                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Levy2020'] !== null ? autolinker.link(String(feature.properties['Levy2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Misc2020'] !== null ? autolinker.link(String(feature.properties['Misc2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -531,8 +975,7 @@
                         <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2021</th>\
-                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -547,8 +990,7 @@
                         <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2022</th>\
-                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -563,8 +1005,7 @@
                         <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tax2023</th>\
-                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -612,11 +1053,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Minnehaha_OO_minus25toplus150_2_0(feature) {
+        function style_SimplifiedMinnehaha_4_0(feature) {
             switch(String(feature.properties['Code'])) {
                 case '1':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -626,7 +1067,7 @@
                     break;
                 case '2':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -636,7 +1077,7 @@
                     break;
                 case '3':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -646,7 +1087,7 @@
                     break;
                 case '4':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -656,7 +1097,7 @@
                     break;
                 case '5':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -666,7 +1107,7 @@
                     break;
                 case '6':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -676,7 +1117,7 @@
                     break;
                 case '7':
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -686,7 +1127,7 @@
                     break;
                 default:
                     return {
-                pane: 'pane_Minnehaha_OO_minus25toplus150_2',
+                pane: 'pane_SimplifiedMinnehaha_4',
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
@@ -696,269 +1137,21 @@
                     break;
             }
         }
-        map.createPane('pane_Minnehaha_OO_minus25toplus150_2');
-        map.getPane('pane_Minnehaha_OO_minus25toplus150_2').style.zIndex = 402;
-        map.getPane('pane_Minnehaha_OO_minus25toplus150_2').style['mix-blend-mode'] = 'normal';
-        var layer_Minnehaha_OO_minus25toplus150_2 = new L.geoJson(json_Minnehaha_OO_minus25toplus150_2, {
+        map.createPane('pane_SimplifiedMinnehaha_4');
+        map.getPane('pane_SimplifiedMinnehaha_4').style.zIndex = 404;
+        map.getPane('pane_SimplifiedMinnehaha_4').style['mix-blend-mode'] = 'normal';
+        var layer_SimplifiedMinnehaha_4 = new L.geoJson(json_SimplifiedMinnehaha_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Minnehaha_OO_minus25toplus150_2',
-            layerName: 'layer_Minnehaha_OO_minus25toplus150_2',
-            pane: 'pane_Minnehaha_OO_minus25toplus150_2',
-            onEachFeature: pop_Minnehaha_OO_minus25toplus150_2,
-            style: style_Minnehaha_OO_minus25toplus150_2_0,
+            dataVar: 'json_SimplifiedMinnehaha_4',
+            layerName: 'layer_SimplifiedMinnehaha_4',
+            pane: 'pane_SimplifiedMinnehaha_4',
+            onEachFeature: pop_SimplifiedMinnehaha_4,
+            style: style_SimplifiedMinnehaha_4_0,
         });
-        bounds_group.addLayer(layer_Minnehaha_OO_minus25toplus150_2);
-        map.addLayer(layer_Minnehaha_OO_minus25toplus150_2);
-        function pop_SiouxFalls_OO_minus25toplus150_3(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">ADDRESS</th>\
-                        <td>' + (feature.properties['ADDRESS'] !== null ? autolinker.link(String(feature.properties['ADDRESS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">OWNNAME1</th>\
-                        <td>' + (feature.properties['OWNNAME1'] !== null ? autolinker.link(String(feature.properties['OWNNAME1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNNAME2'] !== null ? autolinker.link(String(feature.properties['OWNNAME2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNADDRESS'] !== null ? autolinker.link(String(feature.properties['OWNADDRESS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNCITY'] !== null ? autolinker.link(String(feature.properties['OWNCITY']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNSTATE'] !== null ? autolinker.link(String(feature.properties['OWNSTATE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNZIP'] !== null ? autolinker.link(String(feature.properties['OWNZIP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNZIP2'] !== null ? autolinker.link(String(feature.properties['OWNZIP2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['COUNTY'] !== null ? autolinker.link(String(feature.properties['COUNTY']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['PARCELTYPE'] !== null ? autolinker.link(String(feature.properties['PARCELTYPE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ZIPCODE'] !== null ? autolinker.link(String(feature.properties['ZIPCODE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OWNEROCCST'] !== null ? autolinker.link(String(feature.properties['OWNEROCCST']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ShapeSTAre'] !== null ? autolinker.link(String(feature.properties['ShapeSTAre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ShapeSTLen'] !== null ? autolinker.link(String(feature.properties['ShapeSTLen']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['CountyID_1'] !== null ? autolinker.link(String(feature.properties['CountyID_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Tag_1'] !== null ? autolinker.link(String(feature.properties['Tag_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tax2020</th>\
-                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Taxable2_1'] !== null ? autolinker.link(String(feature.properties['Taxable2_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tax2021</th>\
-                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Assessed_2'] !== null ? autolinker.link(String(feature.properties['Assessed_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Taxable2_2'] !== null ? autolinker.link(String(feature.properties['Taxable2_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tax2022</th>\
-                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Assessed_3'] !== null ? autolinker.link(String(feature.properties['Assessed_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Taxable2_3'] !== null ? autolinker.link(String(feature.properties['Taxable2_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tax2023</th>\
-                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Assessed_4'] !== null ? autolinker.link(String(feature.properties['Assessed_4']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Taxable2_4'] !== null ? autolinker.link(String(feature.properties['Taxable2_4']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tax2024</th>\
-                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Grwth_20_2</th>\
-                        <td>' + (feature.properties['Grwth_20_2'] !== null ? autolinker.link(String(feature.properties['Grwth_20_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['F31'] !== null ? autolinker.link(String(feature.properties['F31']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ObjectID_2'] !== null ? autolinker.link(String(feature.properties['ObjectID_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(String(feature.properties['Shape_Leng']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Code'] !== null ? autolinker.link(String(feature.properties['Code']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_SiouxFalls_OO_minus25toplus150_3_0(feature) {
-            switch(String(feature.properties['Code'])) {
-                case '1':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,128,128,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '2':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,255,190,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '3':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(211,255,190,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '4':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(137,205,102,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '5':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,169,230,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '6':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,38,115,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '7':
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,0,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
-                pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(239,239,239,1.0)',
-                interactive: true,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_SiouxFalls_OO_minus25toplus150_3');
-        map.getPane('pane_SiouxFalls_OO_minus25toplus150_3').style.zIndex = 403;
-        map.getPane('pane_SiouxFalls_OO_minus25toplus150_3').style['mix-blend-mode'] = 'normal';
-        var layer_SiouxFalls_OO_minus25toplus150_3 = new L.geoJson(json_SiouxFalls_OO_minus25toplus150_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_SiouxFalls_OO_minus25toplus150_3',
-            layerName: 'layer_SiouxFalls_OO_minus25toplus150_3',
-            pane: 'pane_SiouxFalls_OO_minus25toplus150_3',
-            onEachFeature: pop_SiouxFalls_OO_minus25toplus150_3,
-            style: style_SiouxFalls_OO_minus25toplus150_3_0,
-        });
-        bounds_group.addLayer(layer_SiouxFalls_OO_minus25toplus150_3);
-        map.addLayer(layer_SiouxFalls_OO_minus25toplus150_3);
-        function pop_Simplified_4(feature, layer) {
+        bounds_group.addLayer(layer_SimplifiedMinnehaha_4);
+        map.addLayer(layer_SimplifiedMinnehaha_4);
+        function pop_SimplifiedCountymap_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['STATEFP'] !== null ? autolinker.link(String(feature.properties['STATEFP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -1004,9 +1197,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Simplified_4_0() {
+        function style_SimplifiedCountymap_5_0() {
             return {
-                pane: 'pane_Simplified_4',
+                pane: 'pane_SimplifiedCountymap_5',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -1017,20 +1210,20 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Simplified_4');
-        map.getPane('pane_Simplified_4').style.zIndex = 404;
-        map.getPane('pane_Simplified_4').style['mix-blend-mode'] = 'normal';
-        var layer_Simplified_4 = new L.geoJson(json_Simplified_4, {
+        map.createPane('pane_SimplifiedCountymap_5');
+        map.getPane('pane_SimplifiedCountymap_5').style.zIndex = 405;
+        map.getPane('pane_SimplifiedCountymap_5').style['mix-blend-mode'] = 'normal';
+        var layer_SimplifiedCountymap_5 = new L.geoJson(json_SimplifiedCountymap_5, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_Simplified_4',
-            layerName: 'layer_Simplified_4',
-            pane: 'pane_Simplified_4',
-            onEachFeature: pop_Simplified_4,
-            style: style_Simplified_4_0,
+            dataVar: 'json_SimplifiedCountymap_5',
+            layerName: 'layer_SimplifiedCountymap_5',
+            pane: 'pane_SimplifiedCountymap_5',
+            onEachFeature: pop_SimplifiedCountymap_5,
+            style: style_SimplifiedCountymap_5_0,
         });
-        bounds_group.addLayer(layer_Simplified_4);
-        map.addLayer(layer_Simplified_4);
+        bounds_group.addLayer(layer_SimplifiedCountymap_5);
+        map.addLayer(layer_SimplifiedCountymap_5);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -1085,11 +1278,12 @@
             }
         });
         var overlaysTree = [
-            {label: '<img src="legend/Simplified_4.png" /> Simplified', layer: layer_Simplified_4},
-            {label: 'SiouxFalls_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_7.png" /></td><td></td></tr></table>', layer: layer_SiouxFalls_OO_minus25toplus150_3},
-            {label: 'Minnehaha_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_7.png" /></td><td></td></tr></table>', layer: layer_Minnehaha_OO_minus25toplus150_2},
-            {label: 'Lincoln_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_7.png" /></td><td></td></tr></table>', layer: layer_Lincoln_OO_minus25toplus150_1},
-            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]
+            {label: '<img src="legend/SimplifiedCountymap_5.png" /> Simplified County map', layer: layer_SimplifiedCountymap_5},
+            {label: 'Simplified Minnehaha<br /><table><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedMinnehaha_4_7.png" /></td><td></td></tr></table>', layer: layer_SimplifiedMinnehaha_4},
+            {label: 'Simplified Sioux Falls<br /><table><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedSiouxFalls_3_7.png" /></td><td></td></tr></table>', layer: layer_SimplifiedSiouxFalls_3},
+            {label: 'Simplified Lincoln<br /><table><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/SimplifiedLincoln_2_7.png" /></td><td></td></tr></table>', layer: layer_SimplifiedLincoln_2},
+            {label: "OpenStreetMap", layer: layer_OpenStreetMap_1, radioGroup: 'bm' },
+            {label: '<img src="legend/School_Districts_0.png" /> School_Districts', layer: layer_School_Districts_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
