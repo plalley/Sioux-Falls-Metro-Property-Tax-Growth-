@@ -40,6 +40,7 @@
         <script src="data/Lincoln_OO_minus25toplus150_1.js"></script>
         <script src="data/Minnehaha_OO_minus25toplus150_2.js"></script>
         <script src="data/SiouxFalls_OO_minus25toplus150_3.js"></script>
+        <script src="data/Simplified_4.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -161,7 +162,8 @@
                         <td colspan="2">' + (feature.properties['Location'] !== null ? autolinker.link(String(feature.properties['Location']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Address'] !== null ? autolinker.link(String(feature.properties['Address']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Address</th>\
+                        <td>' + (feature.properties['Address'] !== null ? autolinker.link(String(feature.properties['Address']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['PO_Zip'] !== null ? autolinker.link(String(feature.properties['PO_Zip']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -239,7 +241,8 @@
                         <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2020</th>\
+                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -251,7 +254,8 @@
                         <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2021</th>\
+                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -266,7 +270,8 @@
                         <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2022</th>\
+                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -281,7 +286,8 @@
                         <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2023</th>\
+                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -296,7 +302,8 @@
                         <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2024</th>\
+                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -429,7 +436,8 @@
         function pop_Minnehaha_OO_minus25toplus150_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FULL_ADDRE'] !== null ? autolinker.link(String(feature.properties['FULL_ADDRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">FULL_ADDRE</th>\
+                        <td>' + (feature.properties['FULL_ADDRE'] !== null ? autolinker.link(String(feature.properties['FULL_ADDRE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['MAP_ID'] !== null ? autolinker.link(String(feature.properties['MAP_ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -510,7 +518,8 @@
                         <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2020</th>\
+                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -522,7 +531,8 @@
                         <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2021</th>\
+                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -537,7 +547,8 @@
                         <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2022</th>\
+                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -552,7 +563,8 @@
                         <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2023</th>\
+                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -567,7 +579,8 @@
                         <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2024</th>\
+                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -753,7 +766,8 @@
                         <td colspan="2">' + (feature.properties['Taxable202'] !== null ? autolinker.link(String(feature.properties['Taxable202']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2020</th>\
+                        <td>' + (feature.properties['Tax2020'] !== null ? autolinker.link(String(feature.properties['Tax2020']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Assessed_1'] !== null ? autolinker.link(String(feature.properties['Assessed_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -765,7 +779,8 @@
                         <td colspan="2">' + (feature.properties['Levy2021'] !== null ? autolinker.link(String(feature.properties['Levy2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2021</th>\
+                        <td>' + (feature.properties['Tax2021'] !== null ? autolinker.link(String(feature.properties['Tax2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2021'] !== null ? autolinker.link(String(feature.properties['Misc2021']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -780,7 +795,8 @@
                         <td colspan="2">' + (feature.properties['Levy2022'] !== null ? autolinker.link(String(feature.properties['Levy2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2022</th>\
+                        <td>' + (feature.properties['Tax2022'] !== null ? autolinker.link(String(feature.properties['Tax2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2022'] !== null ? autolinker.link(String(feature.properties['Misc2022']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -795,7 +811,8 @@
                         <td colspan="2">' + (feature.properties['Levy2023'] !== null ? autolinker.link(String(feature.properties['Levy2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2023</th>\
+                        <td>' + (feature.properties['Tax2023'] !== null ? autolinker.link(String(feature.properties['Tax2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2023'] !== null ? autolinker.link(String(feature.properties['Misc2023']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -810,7 +827,8 @@
                         <td colspan="2">' + (feature.properties['Levy2024'] !== null ? autolinker.link(String(feature.properties['Levy2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tax2024</th>\
+                        <td>' + (feature.properties['Tax2024'] !== null ? autolinker.link(String(feature.properties['Tax2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Misc2024'] !== null ? autolinker.link(String(feature.properties['Misc2024']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -940,6 +958,79 @@
         });
         bounds_group.addLayer(layer_SiouxFalls_OO_minus25toplus150_3);
         map.addLayer(layer_SiouxFalls_OO_minus25toplus150_3);
+        function pop_Simplified_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATEFP'] !== null ? autolinker.link(String(feature.properties['STATEFP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYFP'] !== null ? autolinker.link(String(feature.properties['COUNTYFP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYNS'] !== null ? autolinker.link(String(feature.properties['COUNTYNS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOIDFQ'] !== null ? autolinker.link(String(feature.properties['GEOIDFQ']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOID'] !== null ? autolinker.link(String(feature.properties['GEOID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? autolinker.link(String(feature.properties['NAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMELSAD'] !== null ? autolinker.link(String(feature.properties['NAMELSAD']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STUSPS'] !== null ? autolinker.link(String(feature.properties['STUSPS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATE_NAME'] !== null ? autolinker.link(String(feature.properties['STATE_NAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LSAD'] !== null ? autolinker.link(String(feature.properties['LSAD']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALAND'] !== null ? autolinker.link(String(feature.properties['ALAND']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AWATER'] !== null ? autolinker.link(String(feature.properties['AWATER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Simplified_4_0() {
+            return {
+                pane: 'pane_Simplified_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Simplified_4');
+        map.getPane('pane_Simplified_4').style.zIndex = 404;
+        map.getPane('pane_Simplified_4').style['mix-blend-mode'] = 'normal';
+        var layer_Simplified_4 = new L.geoJson(json_Simplified_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Simplified_4',
+            layerName: 'layer_Simplified_4',
+            pane: 'pane_Simplified_4',
+            onEachFeature: pop_Simplified_4,
+            style: style_Simplified_4_0,
+        });
+        bounds_group.addLayer(layer_Simplified_4);
+        map.addLayer(layer_Simplified_4);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -994,6 +1085,7 @@
             }
         });
         var overlaysTree = [
+            {label: '<img src="legend/Simplified_4.png" /> Simplified', layer: layer_Simplified_4},
             {label: 'SiouxFalls_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/SiouxFalls_OO_minus25toplus150_3_7.png" /></td><td></td></tr></table>', layer: layer_SiouxFalls_OO_minus25toplus150_3},
             {label: 'Minnehaha_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/Minnehaha_OO_minus25toplus150_2_7.png" /></td><td></td></tr></table>', layer: layer_Minnehaha_OO_minus25toplus150_2},
             {label: 'Lincoln_OO_minus25toplus150<br /><table><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_10.png" /></td><td>1</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_21.png" /></td><td>2</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_32.png" /></td><td>3</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_43.png" /></td><td>4</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_54.png" /></td><td>5</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_65.png" /></td><td>6</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_76.png" /></td><td>7</td></tr><tr><td style="text-align: center;"><img src="legend/Lincoln_OO_minus25toplus150_1_7.png" /></td><td></td></tr></table>', layer: layer_Lincoln_OO_minus25toplus150_1},
